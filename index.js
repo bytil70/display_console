@@ -2,10 +2,11 @@ const consoleOutput = document.getElementById('consoleOutput');
 
 // 覆寫 console.log 函數
 const originalConsoleLog = console.log.bind(console);
-console.log = function(message) {
-  originalConsoleLog(message); // 仍然將訊息輸出到瀏覽器的實際 Console (如果連接了遠端偵錯)
+console.log = function() {
+  const message = Array.from(arguments).join(' '); // 將所有參數連接成一個字串
+  originalConsoleLog.apply(console, arguments);
   if (consoleOutput) {
-    consoleOutput.innerHTML += message + '<br>'; // 將訊息添加到 HTML 元素中，並換行
+    consoleOutput.innerHTML += message + '<br>';
   }
 };
 
