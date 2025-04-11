@@ -2,8 +2,8 @@ const consoleOutput = document.getElementById('consoleOutput');
 
 // 覆寫 console.log 函數
 const originalConsoleLog = console.log.bind(console);
-console.log = function() {
-  const message = Array.from(arguments).join(' '); // 將所有參數連接成一個字串
+console.log = function() { // 注意這裡沒有參數了
+  const message = Array.from(arguments).join(' ');
   originalConsoleLog.apply(console, arguments);
   if (consoleOutput) {
     consoleOutput.innerHTML += message + '<br>';
